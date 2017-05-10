@@ -41,11 +41,13 @@ define(function Widget() {
     );
   }
 
-  api.init = function (parameters)
+  api.init = function ()
   {
-    this.parameters = parameters;
-
     this.render();
+    window.setInterval(
+      this.render.bind(this),
+      this.parameters.tick * 1000 || 20000
+    );
   };
 
   return api;

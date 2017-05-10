@@ -18,5 +18,21 @@ define(function Base() {
     }
   };
 
+  Object.defineProperty(api, 'parameters', {
+    enumerable: true,
+    get: function () {
+      return location.search
+        .replace(/^\?/, "")
+        .split("&")
+        .map(function (p) {
+          var param = p.split("=");
+          var pair = {};
+          pair[param[0]] = param[1];
+          return pair;
+        })
+        .reduce(function (m, n) { return Object.assign(m, n); });
+    }
+  });
+
   return api;
 })

@@ -14,7 +14,6 @@ define(function Tools() {
      * It returns a new object.
      */
     merge: function () {
-      console.log("Merged", this)
       var merged = Object.create({});
       Array.prototype.slice.call(arguments)
       .forEach(function (obj) {
@@ -25,6 +24,7 @@ define(function Tools() {
           }
         });
       });
+
       return merged;
     },
     format: function (str, params) {
@@ -75,7 +75,6 @@ define(function Tools() {
          * we call `next` again and start over. If not, we call `final`.
          */
         var next = (function (n) {
-          console.log("Am next", this)
           return (function (acc) {
             tasks[n].bind(this)(acc).then((function (r) {
               if (n == tasks.length - 1) {
