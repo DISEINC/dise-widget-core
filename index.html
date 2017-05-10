@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  
+  <title>DISE Widget Template</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet"/>
+  <link href="widget.css" rel="stylesheet"/>
+  <!--
+    Script tags in the <head> are blocking,
+    yes. But currently we don't want it to to things
+    before all resources are loaded.
+  -->
+  <script src="vendor/mustache.min.js"></script>
+  <script src="vendor/promise.js"></script>
+  <script src="vendor/fetch.js"></script>
+  <script data-main="bootstrap.js" src="vendor/require.js"></script>
+  <script>
+    require.config({
+      paths: { text: "vendor/require.text"}
+    });
+  </script>
+</head>
+<body>
+  <div id="widget"></div>
+</body>
+</html>

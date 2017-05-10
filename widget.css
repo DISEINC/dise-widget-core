@@ -1,0 +1,27 @@
+/**
+ *
+ * Palette:
+ * - Primary:            #02A8F3
+ * - Primary Text:       #FFFFFF
+ * - Secondary Text:     #B2E4FB
+ * - Icon:               #0187D0
+ *
+ * From: Materialup, material.io
+ */
+html,
+body
+{
+  height: 100%;
+  width: 100%;
+}
+#widget,
+#widget *
+{
+  box-sizing: border-box;
+}
+
+#widget
+{
+  height: 100%;
+  width: 100%;
+}
