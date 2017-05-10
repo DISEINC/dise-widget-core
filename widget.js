@@ -21,7 +21,6 @@ define(function Widget() {
   state.rendered = 0;
 
   api.fetch = function () {
-    console.log("Parallel Fetch", this);
     return new Promise(function (resolve) {
       resolve({});
     });
@@ -45,6 +44,7 @@ define(function Widget() {
   api.init = function (parameters)
   {
     this.parameters = parameters;
+
     this.render();
   };
 

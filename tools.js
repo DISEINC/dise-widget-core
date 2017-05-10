@@ -11,7 +11,7 @@ define(function Tools() {
     /**
      * This should not be bound to `this`.
      *
-     * It returns a new object. 
+     * It returns a new object.
      */
     merge: function () {
       console.log("Merged", this)
