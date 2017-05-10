@@ -16,6 +16,11 @@ define(function Widget() {
    * If they are bound, you'll have access to `this` in all of the functions.
    */
   var state = {};
+  var defaults =
+  {
+    layout: "card",
+    tick: 20000
+  }
   var api = {};
 
   state.rendered = 0;
@@ -47,7 +52,7 @@ define(function Widget() {
     this.render();
     window.setInterval(
       this.render.bind(this),
-      this.parameters.tick * 1000 || 20000
+      this.parameters.tick * 1000 || defaults.tick
     );
   };
 
