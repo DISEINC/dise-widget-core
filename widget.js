@@ -20,7 +20,6 @@ define(function Widget() {
 
   state.rendered = 0;
 
-
   api.fetch = function () {
     console.log("Parallel Fetch", this);
     return new Promise(function (resolve) {
@@ -30,13 +29,12 @@ define(function Widget() {
 
   api.render = function () {
     state.rendered += 1;
-    this.async.series.call(this,
-      [
-      this.getLayout.bind(this),
-         this.fetch
-      ],
+    this.async.parallel.call(this,
+      {
+        layout: this.getLayout.bind(this),
+        data: this.fetch
+      },
       function (results) {
-        console.log("Final", this)
         var data = results.data || {};
         data.rendered = state.rendered;
         document.querySelector("#widget").innerHTML = Mustache.render(results.layout, data);

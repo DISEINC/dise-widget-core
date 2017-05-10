@@ -8,6 +8,11 @@ define(function Tools() {
    * Should not contain application code.
    */
   return {
+    /**
+     * This should not be bound to `this`.
+     *
+     * It returns a new object. 
+     */
     merge: function () {
       console.log("Merged", this)
       var merged = Object.create({});
