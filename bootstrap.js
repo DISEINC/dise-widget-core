@@ -1,4 +1,5 @@
 define(function () {
+  "use strict";
   /**
    * ?layout=card&tick=5 -> {layout: "card", tick: "5"}
    */
@@ -13,8 +14,19 @@ define(function () {
     })
     .reduce(function (m, n) { return Object.assign(m, n); });
 
-  requirejs(["widget"], function (Widget) {
-    Widget.init(parameters);
-    window.setInterval(Widget.render, parameters.tick * 1000 || 20000);
+  requirejs(["widget", "tools", "base"], function (Widget, Tools, Base) {
+    console.log(Tools);
+    /**
+     * By merging all these,
+     * the Widget will have access to all public methods on `this`.
+     *
+     * I.e. Widget.init can access Tools.merge as `this.merge`.
+     */
+    var wgt = Tools.merge(Tools, Base, Widget);
+    wgt.init(parameters);
+    /**
+     * Gör den här hanteringen internt.
+     */
+    window.setInterval(wgt.render.bind(wgt), parameters.tick * 1000 || 20000);
   });
 });
