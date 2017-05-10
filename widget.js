@@ -36,6 +36,7 @@ define(function Widget() {
       function (results) {
         var data = results.data || {};
         data.rendered = state.rendered;
+        data.dt = new Date();
         document.querySelector("#widget").innerHTML = Mustache.render(results.layout, data);
       }
     );
