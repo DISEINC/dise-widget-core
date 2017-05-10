@@ -131,7 +131,6 @@ define(function Widget() {
         }
       },
       function (results) {
-        console.log("Rendering widget");
         document.querySelector("#widget").innerHTML = Mustache.render(results.layout, results.data);
       }
     );
