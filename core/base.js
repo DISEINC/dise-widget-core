@@ -78,5 +78,14 @@ define(function Base() {
     document.querySelector("#widget").innerHTML = Mustache.render(template, data);
   }
 
+  api.init = function ()
+  {
+    this.render();
+    window.setInterval(
+      this.render.bind(this),
+      this.parameters.tick * 1000
+    );
+  };
+
   return api;
 })

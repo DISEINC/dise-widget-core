@@ -41,17 +41,19 @@ On page load, `core/bootstrap` creates the widget object and initializes it with
 
 **Core**  contains general application code
 - **parameters**  
-  A getter property that contains the parameters supplied to the widget. Takes default parameters from `<meta name="widget-%PARAM%" content="%VALUE%"/>`-tags, and overrides them with URL parameters, supplied with a regular `?%PARAM%=%VALUE%`-syntax.
+A getter property that contains the parameters supplied to the widget. Takes default parameters from `<meta name="widget-%PARAM%" content="%VALUE%"/>`-tags, and overrides them with URL parameters, supplied with a regular `?%PARAM%=%VALUE%`-syntax.
 - **layout**  
-  A getter property that returns a Promise, which resolves with a Mustache template. Template path is `layouts/${parameters.layout}.mustache`.
+A getter property that returns a Promise, which resolves with a Mustache template. Template path is `layouts/${this.parameters.layout}.mustache`.
+- **init**  
+  Initializer method that does two things: It calls `this.render` and sets up a re-render interval. It's called once on page load.
 - **update**  
   A method that takes a Mustache template (from `this.layout`) and an object with some data and renders it to the DOM.
 
 **Widget** contains your specific application code
-- **init**  
-  Initializer that does two things: It calls `this.render` and sets up a re-render interval. It's called once on page load.
-- **render**
-  Coordinates the (re-)render of the widget. Usually looks sort of like this:
+- **fetch**  
+  Responsible for gathering data from whatever non-local sources you may have, usually REST API endpoints. Like all asynchronous methods it should return a Promise.
+- **render**  
+  Coordinates the (re-)render of the widget. It's called once every `this.parameters.tick` and usually looks sort of like this:
   ```
     api.render = function () {
       this.async.parallel.call(this,

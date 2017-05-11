@@ -42,15 +42,6 @@ define(function Widget() {
     );
   }
 
-  api.init = function ()
-  {
-    this.render();
-    window.setInterval(
-      this.render.bind(this),
-      this.parameters.tick * 1000
-    );
-  };
-
   return api;
 
 })
