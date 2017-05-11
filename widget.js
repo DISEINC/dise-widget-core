@@ -36,7 +36,7 @@ define(function Widget() {
       function (results) {
         this.update(
           results.layout,
-          this.merge(results.data, state, { dt: Date.now() })
+          this.merge(results.data, state, { dt: new Date() })
         );
       }
     );
