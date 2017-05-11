@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  
+
   <title>DISE Widget Template</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet"/>
@@ -24,6 +24,13 @@
       paths: { text: "vendor/require.text"}
     });
   </script>
+  <!--
+    Parameters may be supplied as `<meta />` tags as well as URL params.
+    Meta tags define default properties, and will be overwritten by
+    URL params. Meta tags should have a name equal to "widget-%PARAM%".
+  -->
+  <meta name="widget-tick" content="20"/>
+  <meta name="widget-layout" content="card"/>
 </head>
 <body>
   <div id="widget"></div>

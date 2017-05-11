@@ -15,16 +15,11 @@ define(function Widget() {
    *
    * If they are bound, you'll have access to `this` in all of the functions.
    */
-  var state = {};
-  var defaults =
-  {
-    layout: "card",
-    tick: 20000
-  }
+  var state = {
+    rendered: 0
+  };
+
   var api = {};
-
-  state.rendered = 0;
-
   api.fetch = function () {
     return new Promise(function (resolve) {
       resolve({});
@@ -35,14 +30,14 @@ define(function Widget() {
     state.rendered += 1;
     this.async.parallel.call(this,
       {
-        layout: this.getLayout.bind(this),
+        layout: this.layout,
         data: this.fetch
       },
       function (results) {
-        var data = results.data || {};
-        data.rendered = state.rendered;
-        data.dt = new Date();
-        document.querySelector("#widget").innerHTML = Mustache.render(results.layout, data);
+        this.update(
+          results.layout,
+          this.merge(results.data, state, { dt: Date.now() })
+        );
       }
     );
   }
@@ -52,7 +47,7 @@ define(function Widget() {
     this.render();
     window.setInterval(
       this.render.bind(this),
-      this.parameters.tick * 1000 || defaults.tick
+      this.parameters.tick * 1000
     );
   };
 

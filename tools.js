@@ -16,6 +16,7 @@ define(function Tools() {
     merge: function () {
       var merged = Object.create({});
       Array.prototype.slice.call(arguments)
+      .filter(function (obj) { return !!obj; })
       .forEach(function (obj) {
         Object.keys(obj).forEach(function (k) {
           if (obj.hasOwnProperty(k))
@@ -51,7 +52,13 @@ define(function Tools() {
         var keys = Object.keys(tasks);
 
         keys.forEach((function (key) {
-          tasks[key].bind(this)().then((function (result) {
+          var fn = tasks[key];
+          if (typeof tasks[key] != "function") {
+            fn = function () {
+              return tasks[key];
+            }
+          }
+          fn.bind(this)().then((function (result) {
             cache.results[key] = result;
             cache.count += 1;
 
