@@ -1,7 +1,7 @@
 define(function () {
   "use strict";
 
-  requirejs(["widget", "tools", "base"], function (Widget, Tools, Base) {
+  requirejs(["widget", "core/tools", "core/base"], function (Widget, Tools, Base) {
     /**
      * By merging all these,
      * the Widget will have access to all public methods on `this`.
