@@ -15,28 +15,28 @@
     yes. But currently we don't want it to to things
     before all resources are loaded.
   -->
-  <script src="core/vendor/mustache.min.js"></script>
-  <script src="core/vendor/promise.js"></script>
-  <script src="core/vendor/fetch.js"></script>
-  <script data-main="bootstrap" src="core/vendor/require.js"></script>
+  <script src="dise-widget-core/vendor/mustache.min.js"></script>
+  <script src="dise-widget-core/vendor/promise.js"></script>
+  <script src="dise-widget-core/vendor/fetch.js"></script>
+  <script data-main="bootstrap" src="dise-widget-core/vendor/require.js"></script>
   <script>
   /**
    * The `data-main` attribute specifies what directory
    * RequireJS will use as its root.
    *
-   * Since Bootstrap.js is placed in `/core`, along with requirejs,
-   * we need to work around this. Setting `data-main="core/bootstrap"`
-   * makes `/core` the default directory, which is why we tell RequireJS
+   * Since Bootstrap.js is placed in `/dise-widget-core`, along with requirejs,
+   * we need to work around this. Setting `data-main="dise-widget-core/bootstrap"`
+   * makes `/dise-widget-core` the default directory, which is why we tell RequireJS
    * to go looking for `data-main="bootstrap"` in the real root, and
    * then redefine the lookup in the paths config.
    *
-   * The alternative is to set `data-main="core/bootstrap", and then
+   * The alternative is to set `data-main="dise-widget-core/bootstrap", and then
    * have paths config redirections for everything else. `
    */
     require.config({
       paths: {
-        text: "core/vendor/require.text",
-        bootstrap: "core/bootstrap"
+        text: "dise-widget-core/vendor/require.text",
+        bootstrap: "dise-widget-core/bootstrap"
       }
     });
   </script>
