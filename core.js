@@ -1,7 +1,7 @@
-define(function Base() {
+define(function Core() {
   "use strict";
   /**
-   * Base contains non-specific application code.
+   * Core contains non-specific application code.
    * When using `defineProperty`, we *don't* have access to Tools or Widget.
    * We're on our own.
    */
@@ -85,8 +85,11 @@ define(function Base() {
     this.$el.innerHTML = Mustache.render(template, data);
   }
 
-  api.init = function ()
+  api.setup = function ()
   {
+    if (this.init) this.init();
+
+    this.$el.dispatchEvent(new CustomEvent('render'));
 
     if (this.parameters.tick > 0) {
       window.setInterval(
@@ -94,7 +97,6 @@ define(function Base() {
         this.parameters.tick * 1000
       );
     }
-
 
     this.$el.dispatchEvent(new CustomEvent('init'));
   };
