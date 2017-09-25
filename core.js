@@ -1,7 +1,7 @@
-define(function Base() {
+define(function Core() {
   "use strict";
   /**
-   * Base contains non-specific application code.
+   * Core contains non-specific application code.
    * When using `defineProperty`, we *don't* have access to Tools or Widget.
    * We're on our own.
    */
@@ -10,6 +10,13 @@ define(function Base() {
       console.log("Update");
     }
   };
+
+  Object.defineProperty(api, '$el', {
+    enumerable: true,
+    get: function () {
+      return document.querySelector("#widget");
+    }
+  })
 
   Object.defineProperty(api, 'layout', {
     enumerable: true,
@@ -75,16 +82,33 @@ define(function Base() {
    * Render the template and update the DOM.
    */
   api.update = function (template, data) {
-    document.querySelector("#widget").innerHTML = Mustache.render(template, data);
+    this.$el.innerHTML = Mustache.render(template, data);
   }
 
-  api.init = function ()
+  api.emit = function (type, detail) {
+    this.$el.dispatchEvent(new CustomEvent(type, {
+      detail: detail
+    }));
+  }
+
+  api.listen = function (type, fn) {
+    this.$el.addEventListener(type, fn);
+  }
+
+  api.setup = function ()
   {
-    this.render();
-    window.setInterval(
-      this.render.bind(this),
-      this.parameters.tick * 1000
-    );
+    if (this.init) this.init();
+
+    this.emit('render');
+
+    if (this.parameters.tick > 0) {
+      window.setInterval(
+        (function () { this.emit('tick'); }).bind(this),
+        this.parameters.tick * 1000
+      );
+    }
+
+    this.emit('init');
   };
 
   return api;
