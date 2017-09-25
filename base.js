@@ -11,6 +11,13 @@ define(function Base() {
     }
   };
 
+  Object.defineProperty(api, '$el', {
+    enumerable: true,
+    get: function () {
+      return document.querySelector("#widget");
+    }
+  })
+
   Object.defineProperty(api, 'layout', {
     enumerable: true,
     get: function () {
@@ -75,21 +82,21 @@ define(function Base() {
    * Render the template and update the DOM.
    */
   api.update = function (template, data) {
-    document.querySelector("#widget").innerHTML = Mustache.render(template, data);
+    this.$el.innerHTML = Mustache.render(template, data);
   }
 
   api.init = function ()
   {
-    this.render();
 
     if (this.parameters.tick > 0) {
       window.setInterval(
-        function () { document.querySelector('#widget').dispatchEvent(new CustomEvent('tick')); },
+        (function () { this.$el.dispatchEvent(new CustomEvent('tick')); }).bind(this),
         this.parameters.tick * 1000
       );
     }
 
-    document.querySelector('#widget').dispatchEvent(new CustomEvent('init'));
+
+    this.$el.dispatchEvent(new CustomEvent('init'));
   };
 
   return api;
