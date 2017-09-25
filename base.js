@@ -81,6 +81,7 @@ define(function Base() {
   api.init = function ()
   {
     this.render();
+    console.log("Yay!");
     window.setInterval(
       this.render.bind(this),
       this.parameters.tick * 1000
