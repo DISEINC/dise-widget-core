@@ -85,20 +85,26 @@ define(function Core() {
     this.$el.innerHTML = Mustache.render(template, data);
   }
 
+  api.emit = function (type, detail) {
+    this.$el.dispatchEvent(new CustomEvent(type, {
+      detail: detail
+    }));
+  }
+
   api.setup = function ()
   {
     if (this.init) this.init();
 
-    this.$el.dispatchEvent(new CustomEvent('render'));
+    this.emit('render');
 
     if (this.parameters.tick > 0) {
       window.setInterval(
-        (function () { this.$el.dispatchEvent(new CustomEvent('tick')); }).bind(this),
+        (function () { this.emit('tick'); }).bind(this),
         this.parameters.tick * 1000
       );
     }
 
-    this.$el.dispatchEvent(new CustomEvent('init'));
+    this.emit('init');
   };
 
   return api;
