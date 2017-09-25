@@ -88,7 +88,7 @@ define(function Tools() {
                 final.bind(this)(r);
               }
               else {
-                next(n + 1)(r);
+                next(n + 1).call(this, r);
               }
             }).bind(this));
           }).bind(this);
