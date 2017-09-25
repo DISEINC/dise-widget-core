@@ -81,12 +81,15 @@ define(function Base() {
   api.init = function ()
   {
     this.render();
+
     if (this.parameters.tick > 0) {
       window.setInterval(
-        this.render.bind(this),
+        function () { document.querySelector('#widget').dispatchEvent(new CustomEvent('tick')); },
         this.parameters.tick * 1000
       );
     }
+
+    document.querySelector('#widget').dispatchEvent(new CustomEvent('init'));
   };
 
   return api;
