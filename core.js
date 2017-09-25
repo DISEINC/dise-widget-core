@@ -91,6 +91,10 @@ define(function Core() {
     }));
   }
 
+  api.listen = function (type, fn) {
+    this.$el.addEventListener(type, fn);
+  }
+
   api.setup = function ()
   {
     if (this.init) this.init();
