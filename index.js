@@ -3,11 +3,11 @@ define(function () {
 
   requirejs([
     "widget",
-    "dise-widget-core/tool",
-    "dise-widget-core/async",
-    "dise-widget-core/core",
-    "dise-widget-core/settings",
-    "dise-widget-core/event",
+    "dise-widget-core/lib/tool",
+    "dise-widget-core/lib/async",
+    "dise-widget-core/lib/core",
+    "dise-widget-core/lib/settings",
+    "dise-widget-core/lib/event",
   ], function (Widget, Tool, Async, Core, Settings, Event) {
     /**
      * By merging all these,
