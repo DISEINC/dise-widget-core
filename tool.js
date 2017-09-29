@@ -1,4 +1,4 @@
-define(function Tools() {
+define(function () {
   "use strict";
 
   /**

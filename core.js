@@ -1,4 +1,4 @@
-define(function Core() {
+define(function () {
   "use strict";
   /**
    * Core contains non-specific application code.

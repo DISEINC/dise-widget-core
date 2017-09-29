@@ -3,10 +3,10 @@ define(function () {
 
   requirejs([
     "widget",
-    "dise-widget-core/tools",
+    "dise-widget-core/tool",
     "dise-widget-core/async",
     "dise-widget-core/core"
-  ], function (Widget, Tools, Async, Core) {
+  ], function (Widget, Tool, Async, Core) {
     /**
      * By merging all these,
      * the Widget will have access to all public methods on `this`.
@@ -16,7 +16,7 @@ define(function () {
 
     window.DS = {
       Widget: Widget,
-      Tools: Tools,
+      Tool: Tool,
       Async: Async,
       Core: Core
     };
