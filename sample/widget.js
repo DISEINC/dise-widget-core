@@ -4,49 +4,29 @@
  * This file should contain specific application code.
  */
 
-define(function Widget() {
+define(function() {
   "use strict";
-  /**
-   * Using this pattern, `this` refers to the publicly exposed API, also available internally as "api". .
-   *
-   * `Inherited` properties, such as `async` functions, should be called with:
-   * this.async.parallel.call(this, ...)
-   * instead of `this.async.parallel(...)`
-   *
-   * If they are bound, you'll have access to `this` in all of the functions.
-   */
-  var state = {
-    rendered: 0
-  };
 
   var api = {};
-  api.fetch = function () {
-    return new Promise(function (resolve) {
-      resolve({});
-    });
-  }
 
-  api.render = function () {
-    state.rendered += 1;
-    this.async.parallel.call(this,
+  api.fetch = function () {}
+
+  api.update = function () {
+    DS.Async.parallel(
       {
-        layout: this.layout,
-        data: this.fetch
+        layout: DS.Core.layout
       },
       function (results) {
-        this.update(
-          results.layout,
-          this.merge(results.data, state, { dt: new Date() })
-        );
+        DS.Core.render(results.layout, {});
       }
     );
   }
 
+
   api.init = function () {
-    this.listen('render', this.render.bind(this));
-    this.listen('tick', this.render.bind(this));
+    DS.Core.listen(DS.Event.INIT, this.update.bind(this));
+    DS.Core.listen(DS.Event.TICK, this.update.bind(this));
   }
 
   return api;
-
-})
+});
