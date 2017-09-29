@@ -5,12 +5,6 @@ define(function () {
    * When using `defineProperty`, we *don't* have access to Tools or Widget.
    * We're on our own.
    */
-  var api = {
-    update: function () {
-      console.log("Update");
-    }
-  };
-
   Object.defineProperty(api, '$el', {
     enumerable: true,
     get: function () {
