@@ -7,7 +7,8 @@ define(function () {
     "dise-widget-core/async",
     "dise-widget-core/core",
     "dise-widget-core/settings",
-  ], function (Widget, Tool, Async, Core, Settings) {
+    "dise-widget-core/event",
+  ], function (Widget, Tool, Async, Core, Settings, Event) {
     /**
      * By merging all these,
      * the Widget will have access to all public methods on `this`.
@@ -20,7 +21,8 @@ define(function () {
       Tool: Tool,
       Async: Async,
       Core: Core,
-      Settings: Settings
+      Settings: Settings,
+      Event: Event
     };
 
     DS.Core.setup();
