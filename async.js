@@ -16,24 +16,25 @@ define(function () {
       var cache = { count: 0, results: {} };
       var keys = Object.keys(tasks);
 
-      keys.forEach((function (key) {
+      keys.forEach(function (key) {
         var fn = tasks[key];
         if (typeof tasks[key] != "function") {
           fn = function () {
             return tasks[key];
           }
         }
-        fn.bind(this)().then((function (result) {
+
+        fn().then(function (result) {
           cache.results[key] = result;
           cache.count += 1;
 
           if (cache.count == keys.length) {
-            final.bind(this)(cache.results);
+            final(cache.results);
           }
-        }).bind(this));
-      }).bind(this))
+        });
+      })
     },
-    series: function (tasks, final) {
+    waterfall: function (tasks, final) {
       /**
        * `next` is a function which takes an index and returns a function.
        * The returned function takes a parameter, `acc` (for "accumulated").
@@ -46,18 +47,18 @@ define(function () {
        * when the Promise resolves, it checks whether we've tasks left: If we do,
        * we call `next` again and start over. If not, we call `final`.
        */
-      var next = (function (n) {
-        return (function (acc) {
-          tasks[n].bind(this)(acc).then((function (r) {
+      var next = function (n) {
+        return function (acc) {
+          tasks[n](acc).then(function (r) {
             if (n == tasks.length - 1) {
-              final.bind(this)(r);
+              final(r);
             }
             else {
-              next(n + 1).call(this, r);
+              next(n + 1)(r);
             }
-          }).bind(this));
-        }).bind(this);
-      }).bind(this);
+          });
+        };
+      };
       // Initialize the chain - Call the first task.
       next(0)();
     }
