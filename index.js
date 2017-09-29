@@ -14,14 +14,13 @@ define(function () {
      * I.e. Widget.init can access Tools.merge as `this.merge`.
      */
 
-    window.App = {
+    window.DS = {
       Widget: Widget,
       Tools: Tools,
       Async: Async,
       Core: Core
     };
 
-    App.Core.setup();
-    // Tools.merge(Tools, Core, Widget).setup();
+    DS.Core.setup();
   });
 });
