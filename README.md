@@ -18,21 +18,12 @@ The core package includes:
 3. Copy the files and folder from `my-widget/dise-widget-core/sample` and place them in the root directory. You should now have a file `my-widget/index.html`.
 4. Load `my-widget/index.html` in a browser, and you're done. Make changes as you see fit.
 
+## Components
+
+## Events
+
 ## Lifecycle
-The widget has a simple, event-based lifecycle.  
-On page load, four things happen:
-* The `render` event is emitted
-* If a `tick` parameter is supplied and greater than 0, a loop will be set up where `tick` is emitted once every, well, tick.
-* The `init` event is emitted
-* The user-defined `Widget.init` method is called
 
-## Lifecycle events
-There are currently 3 events in use:
-* `init` - Emitted on page load
-* `render` - Emitted on page load
-* `tick` - Emitted once every `tick`
-
-It is recommended to bind your user-defined `Widget.render` method to the `render` event and `tick` event.
 
 ## API
 **Tools** are non-specific, non-application code, mainly utility methods to make life easier.   
