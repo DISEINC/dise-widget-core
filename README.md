@@ -1,20 +1,38 @@
 # DISE Widget Core
 
+**This project is in beta release**. Breaking changes may occur until it hits version 1.
+
 ## What's in the box?
 The core package includes:
+- A batteries-included, opinionated framework for creating small browser widgets or web apps.
 - a sample widget (located in `samples/`) showing off the very basics of rendering and updating a widget
-- an environment with access to Mustache,   RequireJS and polyfills for Promise and Fetch.
-- Tools for parameter retrieval, object merging (similar to similar to `Object.assign`) and AJAX management (similar to `parallel` and `series` from the [caolan/async](https://github.com/caolan/async))
+- Modules via [RequireJS](http://requirejs.org/) and the [text plugin](https://github.com/requirejs/text)
+- Templating via [Mustache](https://github.com/janl/mustache.js)
+- Async functions similar to `parallel` and `waterfall` methods by [caolan/async]([caolan/async](https://github.com/caolan/async))
+- Polyfills for [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) and [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+- Helper methods for string formatting and object merging
 
-## Installation  
+## Getting started
 1. Create a project folder, `my-widget/`
 2. Pull this repository in as a submodule (`my-widget/dise-widget-core`)
 3. Copy the files and folder from `my-widget/dise-widget-core/sample` and place them in the root directory. You should now have a file `my-widget/index.html`.
 4. Load `my-widget/index.html` in a browser, and you're done. Make changes as you see fit.
 
 ## Lifecycle
-The widget has  a fairly simple lifecycle: `init -> render -> fetch ->  update ... render -> fetch -> update`.  
-On page load, `core/bootstrap` creates the widget object and initializes it with `.init()`. By default, the widget is rendered and a rerender interval is set up. On each render, the widget will fetch some data, include the proper template and update the DOM with the resulting markup.
+The widget has a simple, event-based lifecycle.  
+On page load, four things happen:
+* The `render` event is emitted
+* If a `tick` parameter is supplied and greater than 0, a loop will be set up where `tick` is emitted once every, well, tick.
+* The `init` event is emitted
+* The user-defined `Widget.init` method is called
+
+## Lifecycle events
+There are currently 3 events in use:
+* `init` - Emitted on page load
+* `render` - Emitted on page load
+* `tick` - Emitted once every `tick`
+
+It is recommended to bind your user-defined `Widget.render` method to the `render` event and `tick` event. 
 
 ## API
 **Tools** are non-specific, non-application code, mainly utility methods to make life easier.   
