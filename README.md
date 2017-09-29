@@ -32,7 +32,7 @@ There are currently 3 events in use:
 * `render` - Emitted on page load
 * `tick` - Emitted once every `tick`
 
-It is recommended to bind your user-defined `Widget.render` method to the `render` event and `tick` event. 
+It is recommended to bind your user-defined `Widget.render` method to the `render` event and `tick` event.
 
 ## API
 **Tools** are non-specific, non-application code, mainly utility methods to make life easier.   
