@@ -32,7 +32,7 @@ define(function () {
   /**
    * Render the template and update the DOM.
    */
-  api.update = function (template, data) {
+  api.render = function (template, data) {
     this.$el.innerHTML = Mustache.render(template, data);
   }
 
@@ -46,20 +46,18 @@ define(function () {
     this.$el.addEventListener(type, fn);
   }
 
-  api.setup = function ()
+  api.start = function ()
   {
     if (DS.Widget.init) DS.Widget.init();
 
-    this.emit(DS.Event.RENDER);
-
+    this.emit(DS.Event.INIT);
+    
     if (DS.Settings.tick > 0) {
       window.setInterval(
         (function () { this.emit(DS.Event.TICK); }).bind(this),
         DS.Settings.tick * 1000
       );
     }
-
-    this.emit(DS.Event.INIT);
   };
 
   return api;

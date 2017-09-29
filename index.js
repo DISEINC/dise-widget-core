@@ -25,6 +25,6 @@ define(function () {
       Event: Event
     };
 
-    DS.Core.setup();
+    DS.Core.start();
   });
 });
