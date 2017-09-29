@@ -42,6 +42,11 @@ define(function Widget() {
     );
   }
 
+  api.init = function () {
+    this.listen('render', this.render.bind(this));
+    this.listen('tick', this.render.bind(this));
+  }
+
   return api;
 
 })
