@@ -97,7 +97,7 @@ define(function Core() {
 
   api.setup = function ()
   {
-    if (this.init) this.init();
+    if (App.Widget.init) App.Widget.init();
 
     this.emit('render');
 
