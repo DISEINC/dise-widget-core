@@ -20,25 +20,25 @@
   <script src="dise-widget-core/vendor/fetch.js"></script>
   <script src="dise-widget-core/vendor/hammer.min.js"></script>
   <script src="dise-widget-core/vendor/hammer-time.min.js"></script>
-  <script data-main="bootstrap" src="dise-widget-core/vendor/require.js"></script>
+  <script data-main="index" src="dise-widget-core/vendor/require.js"></script>
   <script>
   /**
    * The `data-main` attribute specifies what directory
    * RequireJS will use as its root.
    *
    * Since Bootstrap.js is placed in `/dise-widget-core`, along with requirejs,
-   * we need to work around this. Setting `data-main="dise-widget-core/bootstrap"`
+   * we need to work around this. Setting `data-main="dise-widget-core/index"`
    * makes `/dise-widget-core` the default directory, which is why we tell RequireJS
-   * to go looking for `data-main="bootstrap"` in the real root, and
+   * to go looking for `data-main="index"` in the real root, and
    * then redefine the lookup in the paths config.
    *
-   * The alternative is to set `data-main="dise-widget-core/bootstrap", and then
+   * The alternative is to set `data-main="dise-widget-core/index", and then
    * have paths config redirections for everything else. `
    */
     require.config({
       paths: {
         text: "dise-widget-core/vendor/require.text",
-        bootstrap: "dise-widget-core/bootstrap"
+        index: "dise-widget-core/index"
       }
     });
   </script>
