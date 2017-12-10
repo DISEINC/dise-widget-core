@@ -22,14 +22,14 @@ The core package includes:
 DSWC offers a decoupled, event-driven lifecycle. On page load,
 `DS.Core.start` will do n things:
 * attempt to call `DS.Widget.init`
-* emit the `DS.Event.INIT` event
-* if `DS.Settings.tick` is > 0, it will set a loop that emits `DS.Event.TICK`
+* emit the `DS.Core.Event.INIT` event
+* if `DS.Settings.tick` is > 0, it will set a loop that emits `DS.Core.Event.TICK`
 every `tick` seconds
 
 It is suggested to declare a _fetch_ and _update_ method on `DS.Widget`,
 and have `DS.Widget.update` call `DS.Core.render` in order to perform a UI update.
 
-When the UI is updated via this method, `DS.Event.RENDER` will be emitted. This
+When the UI is updated via this method, `DS.Core.Event.RENDER` will be emitted. This
 allows you to e.g. re-bind events.
 
 A rough outline of the lifecycle is:  
@@ -45,7 +45,7 @@ In case of conflict, query parameters override tag parameters.
  Settings are then available in the widget as `DS.Settings.mySetting`.
 
 ## API
-**DS.Event**  
+**DS.Core.Event**  
 - `INIT` - Emitted on initialization
 - `RENDER` - Emitted after each render
 - `TICK` - Emitted on each tick

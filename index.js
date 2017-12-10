@@ -7,7 +7,6 @@ define(function () {
     "dise-widget-core/lib/async",
     "dise-widget-core/lib/core",
     "dise-widget-core/lib/settings",
-    "dise-widget-core/lib/event",
     "dise-widget-core/lib/cache",
   ], function (Widget, Tool, Async, Core, Settings, Event, Cache) {
 

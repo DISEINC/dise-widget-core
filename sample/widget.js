@@ -24,8 +24,8 @@ define(function() {
 
 
   api.init = function () {
-    DS.Core.listen(DS.Event.INIT, this.update.bind(this));
-    DS.Core.listen(DS.Event.TICK, this.update.bind(this));
+    DS.Core.listen(DS.Core.Event.INIT, this.update.bind(this));
+    DS.Core.listen(DS.Core.Event.TICK, this.update.bind(this));
   }
 
   return api;
