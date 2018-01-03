@@ -8,7 +8,7 @@ define(function () {
     "dise-widget-core/lib/core",
     "dise-widget-core/lib/settings",
     "dise-widget-core/lib/cache",
-  ], function (Widget, Tool, Async, Core, Settings, Event, Cache) {
+  ], function (Widget, Tool, Async, Core, Settings, Cache) {
 
     window.DS = {
       Widget: Widget,
@@ -16,7 +16,6 @@ define(function () {
       Async: Async,
       Core: Core,
       Settings: Settings,
-      Event: Event,
       Cache: Cache
     };
 
