@@ -17,7 +17,7 @@ define(function() {
         layout: DS.Core.layout
       },
       function (results) {
-        DS.Core.render(results.layout, {});
+        DS.Core.update(results.layout, {});
       }
     );
   }
